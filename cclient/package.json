@@ -1,0 +1,18 @@
+{
+  "name": "cclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon client.js",
+    "build": "docker build --rm -t cclient --file Dockerfile ..",
+    "indocker": "docker run --rm --name cclient -e CONNECT_PORT=8337 -e CONNECT_ADDR=host.docker.internal cclient"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
