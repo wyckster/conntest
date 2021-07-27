@@ -2,11 +2,11 @@
 
 `conntest` is short for _"connection test"_.
 
-Reproduces an issue I'm seeing with node.js in Docker.  The client node process exits unceremoniously with no warnings if the socket connection is broken due to the server resetting. This happens only when the Client is running in Docker.
+Reproduces an issue I'm seeing with Node.js in Docker.  The client node process exits unceremoniously with no warnings if the socket connection is broken due to the server resetting. This happens only when the client is running in Docker.
 
 ## Prerequesites
 
-This assumes a global instalation of `nodemon` is available.
+This assumes a global installation of `nodemon` is available.
 
 ```
 npm install nodemon -g
@@ -54,21 +54,21 @@ npm install
 npm run dev
 ```
 
-### Build and run (Docker)
+### Build and Run (Docker)
 
 ```
 npm run build
 npm run indocker
 ```
 
-#### Alternate way to run interactively
+#### Alternate Way to Run Interactively
 
 ```
 docker run --rm -it --name cclient -e CONNECT_PORT=8337 -e CONNECT_ADDR=host.docker.internal cclient /bin/bash
 node client.js
 ```
 
-## To Reproduce the bug.
+## To Reproduce the Bug
 
 1. Build and run the server (`cserver`) on the host.
 2. Build and run the client (`cclient`) in Docker, directing it to connect to the server from step 1.
@@ -114,4 +114,4 @@ root@bfcfd76a00e4:/usr/src/cclient#
 
 In this situation, the process just **exits**.  There is no error or anything.  If running directly from Docker, the container will exit when the process exits.
 
-You can run with the _alternate way to run interactively_ (by specifying the command `/bin/bash`) and the container will not exit.  (Output of this technique is shown above.)
+You can run with the _alternate way to run interactively_ (by specifying the command `/bin/bash`) and the process will exit without causing the whole container to exit.  (Output of this technique is shown above.)
