@@ -21,6 +21,9 @@ function connect() {
       connect();
     });
   });
+  client.on('data', data => {
+    console.log('data', data);
+  });
   client.on('connect', () => {
     log('connected');
   });
